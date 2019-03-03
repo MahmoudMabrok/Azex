@@ -7,5 +7,6 @@ Hello
   - [part2](mat2.html)
   - [part3](mat3.html)
 - Data Stracture
+  - [linkedlist](linked.html)
 
 ### Azex 2018
