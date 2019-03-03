@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>linked.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<p>القوائم المترابطة &quot; Linked List &quot;
+............................
+القوائم المترابطة تشبه المصفوفات بأن كلاهما يُعتبر تركيب هيكلى خطى (Linear data structure )<br>
+وتختلف عنها :
+بأن عناصرها لا تُخزن في أماكن متجاورة  في الذاكرة (contiguous location in memory   )
+وأن العناصر ترتبط مع بعضها البعض عن طريق مؤشر ( pointer ).</p>
+<p>وعند السؤال : لماذا نستخدم الـ Lined list  خاصةً؟ فيمكن الاجابه عنه كالتالي :
+لأنه ببساطة نجد ان بعض المشاكل لا يٌمكن حلها بإستخدام المصفوفات (Arrays ) وذلك :
+لأن حجم المصفوفه ثابت (fixed size ) لذا عند الاستخدام يجب ان نضع فى عين الاعتبار الحد الذى يُمكن إضافته اعتباراً بالحجم المحدد .
+ولأن عملية إدخال عنصر جديد لمصفوفة مرتبة أو حذف عنصر منها ليست سهلة  وذلك لأننا نحتاج إلى عمل تغير لأماكن جميع عناصر المصفوفة
+مثال :
+عند إنشاء مصفوفة ل ID  بعض العمّال كالآتى :
+id[] = [1000, 1010, 1050, 2000, 2040, ….].
+وأردنا توظيف عامل جديد وإضافة ال ID الخاص به وليكن 1005
+فهنا نبدأ بإنشاء مكانًا له ثم يتم انتقال جميع العناصر (Shifted) ما عدا 1000 لتصبح المصفوفة على الشكل التالي :
+id[] = [1000, 1005 ,1010, 1050, 2000, 2040,…..].
+وهكذا أيضا عند الحذف .</p>
+<pre><code>         أما بالنظر للقوائم المترابطة (Linked list  ) فهى :
+</code></pre>
+<p>تمكننا من تغير حجمها عند إرادة ذلك ( Dynamic size) .
+تمكننا من إدخال اى عنصر أو حذفه بسهولة دون الحاجه لتحريك العناصر من أماكنها .</p>
+<p>وكما أن لكل شئ عيوب ومميزات فنجد أن عيوب القوائم المترابطة تتمثل في :
+أن الوصول العشوائي لاى عنصر ليس مسموحاً ، لذا القوائم المترابطة ليست مجدية في عمليه البحث الثنائي (Binary search  ) لأنه عند إراده البحث عن عنصر معين فإننا نبدأ البحث من أول عنصر في القائمة (First node )
+تحتاج لمساحة كبيرة في الذاكرة</p>
+<p>الآن بعد معرفتنا للفرق بين المصفوفات والقوائم المترابطة يمكننا تعريف هذ القوائم كالاتي :
+القوائم المترابطة : هي عبارة عن سلسلة من النسخ المتشابهه في النوع والمتصله ببعضها عن طريق مؤشر ليربط كل نسخة باللتى تليها :
+A linked list  consists of a chain of objects of the same type , linked together by pointer from one object to next .</p>
+<p>كيفية تمثيل القوائم المترابطة :
+تُمثل القوائم المترابطة عن طريق مؤشر (poiner ) يشير الى أول عقدة فى القوائم المترابطة (first node of the linked list ) وهذه العقدة تسمى (Head ) بمعنى انها مقدمة ال linked list
+وإذا كانت ال linked list  فارغة فإن قيمه ال head  ستكون null
+كل عقدة فى القوائم المترابطة تتمثل بشيئين :
+بمتغير أو قيمة (Data  ).
+مؤشر للعقدة التاليه ( pointer or reference to the next node ).</p>
+<p>فى الجافا يتم تمثيل العقدة بكائن ( (class  ونمثل القوائم المترابطة بكائن اخر another class) )
+وتحتوى القوائم المترابطة على مؤشر للعقدة الاولى (LinkedList class contains a reference of Node class type. )</p>
+<p>First Simple Linked List in java</p>
+<p>اذا لم تستطع الفهم فهذا شئٌ بديهى اذ أن كل شئ جديد يصنف بأنه صعب في بدايته
+الآن سأشرح لك بالتفصيل كيفية ادخال العناصر للقوائم المترابطة :
+Inserting a node
+كما اتفقنا أن القوائم المترابطة يتم تمثيلها بمجموعه من العقد المترابطة ، وكل عقدة تتكون من شيئين قيمة ومؤشر ليشير الى العنصر التالى او العقده التاليه  (Data &amp; reference )
+لذا لإنشاء العقدة ننشئ كائن ونعرف خصائصها كالآتي :</p>
+<pre class="hljs"><code><div>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span> 
+    </span>{ 
+        <span class="hljs-keyword">int</span> data; 
+        Node next; 
+           
+        <span class="hljs-comment">// Constructor to create a new node </span>
+        Node(<span class="hljs-keyword">int</span> d) {
+         data = d; 
+           next = <span class="hljs-keyword">null</span>; } 
+    } 
+
+</div></code></pre>
+<p>يمكننا بعذ ذلك انشاء مجموعه من العقد بإنشاء نسخ من الكائن Node  واعطائها قيمة
+ولكن بفعلى هذا فإننى أجد أنه تم تكوين عقد ليست متصله ببعضها، فما فعلته الان لا يعتبر قائمه مترابطه هو فقط تكوين لعقد القائمه المترابطة هكذا</p>
+<pre><code>     +----+------+     +----+------+     +----+------+ 
+     | 1  | null |     | 2  | null |     |  3 | null | 
+     +----+------+     +----+------+     +----+------+ 
+</code></pre>
+<p>والان بعدما كونّا عقد القائمه يجب ربطهم جميعا كما يجب علينا تحديد أول القائمه وأخرها
+حينها ننشئ كائن أخر للقائمه هكذا :</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinkedList</span> 
+</span>{ 
+    Node head;  <span class="hljs-comment">// head of list </span>
+  
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> 
+    </span>{ 
+        <span class="hljs-comment">/* Start with the empty list. */</span>
+        LinkedList llist = <span class="hljs-keyword">new</span> LinkedList();    
+  
+        llist.head  = <span class="hljs-keyword">new</span> Node(<span class="hljs-number">1</span>);
+<span class="hljs-comment">//تم جعل النسخه الاولى من العقدة هى رأس القائمه</span>
+ 
+        Node second = <span class="hljs-keyword">new</span> Node(<span class="hljs-number">2</span>); 
+        Node third  = <span class="hljs-keyword">new</span> Node(<span class="hljs-number">3</span>); 
+<span class="hljs-comment">// تعريف عقدتين </span>
+        llist.head.next = second;
+<span class="hljs-comment">// جعل العقد الاولى تشير للثانية </span>
+        second.next = third;
+<span class="hljs-comment">//جعل الثانية تشير او ترتبط بالعقده الثالثة</span>
+  
+}
+}
+</div></code></pre>
+<p>:  الان نجد ان القائمة المترابطة تم انشائها الان</p>
+<pre><code>     llist.head        second              third 
+        |                |                  | 
+        |                |                  | 
+    +----+------+     +----+------+     +----+------+ 
+    | 1  |  o--------&gt;| 2  |  o--------&gt;|  3 | null | 
+    +----+------+     +----+------+     +----+------+
+</code></pre>
+<p>وبالنظر لإدخال القيم فى القائمة المترابطة فإننا نجد أنه يمكن أن نضيف في أول القائمة أو في وسطها (اى بعد عقدة معينة ) أو في أخرها وسنشرح كل واحده بالتفصيل :
+-Add a node at the front: (A 4 steps process)1</p>
+<p>كما تعلمنا في المثال السابق شرحه فإننا باضافه اول عقده نجعل ال head  يشير عليها
+وبالمثل عند إرادة إضافة عقدة فى أول القائمة يجب أن يشير ال  head عليها معلنا بذلك أنها أول القائمة المترابطة كما نجعل العقدة الجديده (E ) تشير الى العقدة التى كان ال head  يشير عليها</p>
+<p>ويمكننا كتابة الكود( دالة الاضافة في اول القائمه ) كما يلى :</p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">/* This function is in LinkedList class. Inserts a 
+   new Node at front of the list. This method is  
+   defined inside LinkedList class shown above */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-keyword">int</span> new_data)</span> 
+</span>{ 
+    <span class="hljs-comment">/* 1 &amp; 2: Allocate the Node &amp; 
+              Put in the data*/</span>
+    Node new_node = <span class="hljs-keyword">new</span> Node(new_data); 
+ 
+    <span class="hljs-comment">/* 3. Make next of new Node as head */</span>
+    new_node.next = head; 
+  
+    <span class="hljs-comment">/* 4. Move the head to point to new Node */</span>
+    head = new_node; 
+} 
+</div></code></pre>
+<p>2- Add a node after a given node: (5 steps process)
+We are given pointer to a node, and the new node is inserted after the given node.</p>
+<p>لدينا بالفعل مؤشر يشير الى مكان كل عقدة ، لذا عند إرادة إضافة عقدة جديدة ( E )  بعد العقدة B فببساطة نجعلها تشير الى ما كانت تشير اليه ثم نجعل مؤشر B  يشير اليها .</p>
+<p>انظر الى هذا الشكل :</p>
+<p>وبعد فهم ما علينا فعله يمكننا كتابه دالته كالآتى :</p>
+<pre class="hljs"><code><div><span class="hljs-comment">/* This function is in LinkedList class. 
+   Inserts a new node after the given prev_node. This method is  
+   defined inside LinkedList class shown above */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insertAfter</span><span class="hljs-params">(Node prev_node, <span class="hljs-keyword">int</span> new_data)</span> 
+</span>{ 
+    <span class="hljs-comment">/* 1. Check if the given Node is null */</span>
+    <span class="hljs-keyword">if</span> (prev_node == <span class="hljs-keyword">null</span>) 
+    { 
+        System.out.println(<span class="hljs-string">"The given previous node cannot be null"</span>); 
+        <span class="hljs-keyword">return</span>; 
+    } 
+  
+    <span class="hljs-comment">/* 2. Allocate the Node &amp; 
+       3. Put in the data*/</span>
+    Node new_node = <span class="hljs-keyword">new</span> Node(new_data); 
+  
+    <span class="hljs-comment">/* 4. Make next of new Node as next of prev_node */</span>
+    new_node.next = prev_node.next; 
+  
+    <span class="hljs-comment">/* 5. make next of prev_node as new_node */</span>
+    prev_node.next = new_node; 
+} 
+
+</div></code></pre>
+<p>لاحظ انه تم التأكد أولا اننا لسنا نضيف في اخر القائمة .</p>
+<p>3- Add a node at the end: (6 steps process):</p>
+<p>كما أن أول القائمة المترابطة يسمى Head ويشير إلى أول عقدة فيها ، فإن أخر القائمة المترابطة يُسمى Tail  ويشير إلى null
+وبالتالى عند إرادة إضافه عقدة جديده فى اخر القائمة يجب علينا أن نجعلها تشير إلى null  ونجعل أخر عقدة كانت تشير عليها
+يمكنك فهمها من الشكل الاتى :
+.
+ويمكننا كتابة دالته كالاتي :</p>
+<p>Following are the 6 steps to add node at the end.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">/* Appends a new node at the end.  This method is  
+   defined inside LinkedList class shown above */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">append</span><span class="hljs-params">(<span class="hljs-keyword">int</span> new_data)</span> 
+</span>{ 
+    <span class="hljs-comment">/* 1. Allocate the Node &amp; 
+       2. Put in the data 
+       3. Set next as null */</span>
+    Node new_node = <span class="hljs-keyword">new</span> Node(new_data); 
+  
+    <span class="hljs-comment">/* 4. If the Linked List is empty, then make the 
+           new node as head */</span>
+    <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span>) 
+    { 
+        head = <span class="hljs-keyword">new</span> Node(new_data); 
+        <span class="hljs-keyword">return</span>; 
+    } 
+  
+    <span class="hljs-comment">/* 4. This new node is going to be the last node, so 
+         make next of it as null */</span>
+    new_node.next = <span class="hljs-keyword">null</span>; 
+  
+    <span class="hljs-comment">/* 5. Else traverse till the last node */</span>
+    Node last = head;  
+    <span class="hljs-keyword">while</span> (last.next != <span class="hljs-keyword">null</span>) 
+        last = last.next; 
+  
+    <span class="hljs-comment">/* 6. Change the next of last node */</span>
+    last.next = new_node; 
+    <span class="hljs-keyword">return</span>; 
+}
+</div></code></pre>
+<p>ملاحظة : عندما تكون القائمة فارغة فإن Head  ستكون null  ولكى نضيف عقدة جديده فإننا نجعل ال Head  يشير اليها كما شرحنا سابقًا</p>
+<p>الان يمكننا كتابة الكود كاملا :</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// A complete working Java program to demonstrate all insertion methods </span>
+<span class="hljs-comment">// on linked list </span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinkedList</span> 
+</span>{ 
+    Node head;  <span class="hljs-comment">// head of list </span>
+  
+    <span class="hljs-comment">/* Linked list Node*/</span>
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span> 
+    </span>{ 
+        <span class="hljs-keyword">int</span> data; 
+        Node next; 
+        Node(<span class="hljs-keyword">int</span> d) {data = d; next = <span class="hljs-keyword">null</span>; } 
+    } 
+  
+    <span class="hljs-comment">/* Inserts a new Node at front of the list. */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-keyword">int</span> new_data)</span> 
+    </span>{ 
+        <span class="hljs-comment">/* 1 &amp; 2: Allocate the Node &amp; 
+                  Put in the data*/</span>
+        Node new_node = <span class="hljs-keyword">new</span> Node(new_data); 
+  
+        <span class="hljs-comment">/* 3. Make next of new Node as head */</span>
+        new_node.next = head; 
+  
+        <span class="hljs-comment">/* 4. Move the head to point to new Node */</span>
+        head = new_node; 
+    } 
+  
+    <span class="hljs-comment">/* Inserts a new node after the given prev_node. */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insertAfter</span><span class="hljs-params">(Node prev_node, <span class="hljs-keyword">int</span> new_data)</span> 
+    </span>{ 
+        <span class="hljs-comment">/* 1. Check if the given Node is null */</span>
+        <span class="hljs-keyword">if</span> (prev_node == <span class="hljs-keyword">null</span>) 
+        { 
+            System.out.println(<span class="hljs-string">"The given previous node cannot be null"</span>); 
+            <span class="hljs-keyword">return</span>; 
+        } 
+  
+        <span class="hljs-comment">/* 2 &amp; 3: Allocate the Node &amp; 
+                  Put in the data*/</span>
+        Node new_node = <span class="hljs-keyword">new</span> Node(new_data); 
+  
+        <span class="hljs-comment">/* 4. Make next of new Node as next of prev_node */</span>
+        new_node.next = prev_node.next; 
+  
+        <span class="hljs-comment">/* 5. make next of prev_node as new_node */</span>
+        prev_node.next = new_node; 
+    } 
+     
+    <span class="hljs-comment">/* Appends a new node at the end.  This method is  
+       defined inside LinkedList class shown above */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">append</span><span class="hljs-params">(<span class="hljs-keyword">int</span> new_data)</span> 
+    </span>{ 
+        <span class="hljs-comment">/* 1. Allocate the Node &amp; 
+           2. Put in the data 
+           3. Set next as null */</span>
+        Node new_node = <span class="hljs-keyword">new</span> Node(new_data); 
+  
+        <span class="hljs-comment">/* 4. If the Linked List is empty, then make the 
+              new node as head */</span>
+        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span>) 
+        { 
+            head = <span class="hljs-keyword">new</span> Node(new_data); 
+            <span class="hljs-keyword">return</span>; 
+        } 
+  
+        <span class="hljs-comment">/* 4. This new node is going to be the last node, so 
+              make next of it as null */</span>
+        new_node.next = <span class="hljs-keyword">null</span>; 
+  
+        <span class="hljs-comment">/* 5. Else traverse till the last node */</span>
+        Node last = head;  
+        <span class="hljs-keyword">while</span> (last.next != <span class="hljs-keyword">null</span>) 
+            last = last.next; 
+  
+        <span class="hljs-comment">/* 6. Change the next of last node */</span>
+        last.next = new_node; 
+        <span class="hljs-keyword">return</span>; 
+    } 
+  
+    <span class="hljs-comment">/* This function prints contents of linked list starting from 
+        the given node */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printList</span><span class="hljs-params">()</span> 
+    </span>{ 
+        Node tnode = head; 
+        <span class="hljs-keyword">while</span> (tnode != <span class="hljs-keyword">null</span>) 
+        { 
+            System.out.print(tnode.data+<span class="hljs-string">" "</span>); 
+            tnode = tnode.next; 
+        } 
+    } 
+  
+    <span class="hljs-comment">/* Driver program to test above functions. Ideally this function 
+       should be in a separate user class.  It is kept here to keep 
+       code compact */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> 
+    </span>{ 
+        <span class="hljs-comment">/* Start with the empty list */</span>
+        LinkedList llist = <span class="hljs-keyword">new</span> LinkedList(); 
+  
+        <span class="hljs-comment">// Insert 6.  So linked list becomes 6-&gt;NUllist </span>
+        llist.append(<span class="hljs-number">6</span>); 
+  
+        <span class="hljs-comment">// Insert 7 at the beginning. So linked list becomes </span>
+        <span class="hljs-comment">// 7-&gt;6-&gt;NUllist </span>
+        llist.push(<span class="hljs-number">7</span>); 
+  
+        <span class="hljs-comment">// Insert 1 at the beginning. So linked list becomes </span>
+        <span class="hljs-comment">// 1-&gt;7-&gt;6-&gt;NUllist </span>
+        llist.push(<span class="hljs-number">1</span>); 
+  
+        <span class="hljs-comment">// Insert 4 at the end. So linked list becomes </span>
+        <span class="hljs-comment">// 1-&gt;7-&gt;6-&gt;4-&gt;NUllist </span>
+        llist.append(<span class="hljs-number">4</span>); 
+  
+        <span class="hljs-comment">// Insert 8, after 7. So linked list becomes </span>
+        <span class="hljs-comment">// 1-&gt;7-&gt;8-&gt;6-&gt;4-&gt;NUllist </span>
+        llist.insertAfter(llist.head.next, <span class="hljs-number">8</span>); 
+  
+        System.out.println(<span class="hljs-string">"\nCreated Linked list is: "</span>); 
+        llist.printList(); 
+    } 
+} 
+
+</div></code></pre>
+<p>Output:
+Created Linked list is:  1  7  8  6  4</p>
+<p>…………………………………………….
+البحث عن عنصر فى القائمة المترابطة :
+Searching a linked list for ascertain item:
+إذا أردنا معرفه عنصر معين في القائمة المترابطة فأولا نبحث هل هو موجود أم لا بمقارنته بباقى عناصر القائمه ، واذا كان موجودًا حينها نريد ان نعرف مكانه في القائمة .
+ففى هذا المثال:  سنبحث بمؤشر يمر على كل العناصر و يقف إذا وجدنا العنصر الذى نبحث عنه ليرجع لناtrue  وستلاحظ اننا استخدمنا (لوب ) لاننا في كل مرة نقارن العنصر الذى نبحث عنه بعنصر من عناصر القائمه .</p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">/* searches the list for a specified item .
+*searchItem is the item that is to be searched for
+*the method returns true if searchItem is one of the items in the list
+* or returns false if seachItem does not occur in the list */</span>
+<span class="hljs-function">Public <span class="hljs-keyword">boolean</span> <span class="hljs-title">find</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> searchItem)</span></span>{
+Node runner ;  <span class="hljs-comment">// A pointer for traversing the list</span>
+runner = head ;   <span class="hljs-comment">// start by looking at the head of the list .</span>
+<span class="hljs-comment">// head is an instance variable</span>
+While (runner != <span class="hljs-keyword">null</span>){
+<span class="hljs-comment">/* go through the list looking at the string in each node.if the string is the one we are looking for return true , since the string has been found in the list*/</span>
+If (runner.data.equals(searchItem))
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+runner= runner.next ;      <span class="hljs-comment">// move on to the next node.my step</span>
+}
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span> ;
+} <span class="hljs-comment">// end find()</span>
+</div></code></pre>
+<p>…………………………………………………..
+حذف عنصر من القائمة المترابطة
+Deleting from a Linked list</p>
+<p>ببساطة فإن عملية الحذف تشبة عملية الادخال
+فاذا ارنا ان نحذف عنصر فى اول القائمة فإننا سنجعل ال head  يشير الى العقدة الثانية وتكون هي بداية القائمة</p>
+<p>بمعنى اننا سنجعل ال head  = head.next
+ويجب التأكد ان العقدة الثانية لا تساوى null  لانه حينئذ ستكون القائمة فارغه
+واذا ارنا حذف عنصر من منتصف القائمة مثلا فإننا سنجعل العقدة التى قبلها تشير الى التى بعدها (previous.next=runner.next )
+اما اذا اردنا حذف اخر عنصر ف القائمة فإننا سنجعل العنصر الذى قبله يشير الى null  ولا يشير عليه
+ويمككنا كتابه الكود كاملا لداله الحذف كالاتى :</p>
+<pre class="hljs"><code><div><span class="hljs-function">Public Boolean <span class="hljs-title">delete</span><span class="hljs-params">(<span class="hljs-keyword">int</span> deleteData)</span></span>{
+If (head ==<span class="hljs-keyword">null</span>){
+<span class="hljs-comment">//الحالة الاولى ان مفيش عناصر عندى اصلا علشان احذف</span>
+<span class="hljs-comment">//the list is empty so it certainly does not contain delete</span>
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span> ; 
+}
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(head.data.equals(deleteData){
+<span class="hljs-comment">//الحالة التانية انى عايزة احذف اول عنصر بالقائمة فبخلى ال head يشير للعقده التانية</span>
+<span class="hljs-comment">//the int is the first item of the list . Remove it</span>
+head = head.next ;
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>; }
+<span class="hljs-keyword">else</span> {
+<span class="hljs-comment">//الحالة التالته ان العنصر موجود بس مش فى اول القائمة</span>
+Node runner ; <span class="hljs-comment">// A node for traversing the list</span>
+Node previous ; <span class="hljs-comment">// always points to the node preceding runner.</span>
+<span class="hljs-comment">// هيبدأ من العنصر التانى لاننا حطينا احتمال انه يكون ف اول القائمة ف الحالة اللى قبلها</span>
+runner=head.next ;
+<span class="hljs-comment">// start by looking at the second list node</span>
+previous =head;
+<span class="hljs-comment">//هنعمل لوب يلف على القائمة المترابطة ويقارن العناصر بالعنصر المراد حذفه لحد ما يوصله</span>
+<span class="hljs-comment">//طبعا ال previous  هتكون واقفه على قبل العنصر وال runner هتكون واقفه ع العنصر نفسه اللى هحذفه</span>
+<span class="hljs-comment">// فعلشان كده هخلى previous.next=runner.next</span>
+<span class="hljs-keyword">while</span> (runner!= <span class="hljs-keyword">null</span> &amp;&amp;runner.data.compareTo(deleteData)&lt;<span class="hljs-number">0</span>){
+<span class="hljs-comment">/* move previous and runner along the list until runner
+*falls off the end or hits a list element that is greater than or equal to deleteData
+*when this loop ends , runner indicates the position where deleteData must be ,if it is in the list */</span>
+previous = runner;
+runner= runner.next; }
+<span class="hljs-keyword">if</span>(runner!=<span class="hljs-keyword">null</span> &amp;&amp; runner.data.equals(deleteData)){
+<span class="hljs-comment">// هنا بتأكد ان العنصر اتحذف</span>
+<span class="hljs-comment">//runner points to the node that is to be deleted </span>
+<span class="hljs-comment">// remove it by changing the pointer in the previous node</span>
+previous.next= runner.next ;
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+}
+<span class="hljs-keyword">else</span>{
+<span class="hljs-comment">// the data does not exist in the list </span>
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span> }
+}
+} <span class="hljs-comment">// end delete()</span>
+
+</div></code></pre>
+<p>سبحانك اللهم وبحمدك أشهد ان لا اله الا انت أستغفرك واتوب اليك</p>
+
+</body>
+</html>
